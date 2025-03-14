@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    
+let humanScore = 0;
+let computerScore = 0;
+
+function getComputerChoice(){
+    const rps = ["rock","paper","scissors"]
+    let choice = Math.floor(Math.random()*3)
+    console.log("bot: "+rps[choice])
+    return rps[choice]
+
+}
+
+function getHumanChoice(){
+    let str = prompt("wybierz: 'rock', 'paper','scissors'")
+    str=str.toLowerCase()
+    console.log(str)
+    if(str=="rock" || str=="paper" || str=="scissors"){
+        return str
+    }else{
+        alert("błędna wartość")
+       return getHumanChoice()
+    }
+}
+
+function playRound(humanChoice, computerChoice){
+
+    if((humanChoice== "rock" && computerChoice=="scissors") || (humanChoice== "scissors" && computerChoice=="paper") || (humanChoice== "paper" && computerChoice=="rock")){
+        console.log(`You won! ${humanChoice} beat ${computerChoice}`)
+        humanScore+=1
+    }else if( humanChoice==computerChoice){
+        console.log("Tie! 0 points")
+    }
+    else{
+        console.log(`You lost! ${computerChoice} beat ${humanChoice}`)
+        computerScore+=1
+    }
+    console.log(`wynik: You ${humanScore}:${computerScore} Bot`)
+    
+}
+function playGame(){
+    for( let i=0;i<5;i++){
+        playRound(getHumanChoice(),getComputerChoice())
+    }
+    if(computerScore>humanScore){
+        console.log(`Przegrałeś`)
+    }else if(humanScore>computerScore){
+        console.log(`Wygrałeś`)
+    }else{
+        console.log(`remis`)
+    }
+}
+playGame()
+
+
+    </script>
+</body>
+</html>
